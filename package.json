@@ -1,0 +1,19 @@
+{
+  "name": "better-discord.js",
+  "version": "1.0.0",
+  "description": "A upgrade to the discord.js package",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "test": "ts-node test/index.ts"
+  },
+  "author": "Mateoox600",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.41",
+    "@types/ws": "^7.4.1"
+  }
+}
