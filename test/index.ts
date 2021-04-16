@@ -31,4 +31,4 @@ bot.addCommand(new Command('save', [], (e, args) => {
     data.save();
 }));
 
-bot.login('ODMwOTU5MjkxODcxNTI3MDA1.YHORJQ._n0xAKpGBXsZNvACGz_IMa_CF9c');
+bot.login('TOKEN');
