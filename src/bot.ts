@@ -31,7 +31,6 @@ export class Bot {
             else return;
 
             if(!command.dm) console.log(`Server: ${msg.guild?.name} - ${msg.author.tag}: ${msg.content}`);
-
             else console.log(`${msg.author.tag}: ${msg.content}`);
             if(command.ownerOnly && !(msg.author.id in this.config.ownersId)) { msg.reply(`"${commandName}" is a bot owner command`); return; }
 
