@@ -13,13 +13,17 @@ export interface BotOptions {
 }
 export declare class Bot {
     config: BotOptions;
-    /**
-     * Client from discord.js
-    */
     client: Client;
     commandManager: CommandManager;
     eventManager: EventManager;
     constructor(config: BotOptions);
+    /**
+     * Connect the bot to discord
+     * @param token Discord bot token
+     */
     login(token: string): void;
+    /**
+     * Disconnect the bot
+     */
     disconnect(): void;
 }

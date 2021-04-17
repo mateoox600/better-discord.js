@@ -8,6 +8,10 @@ var EventManager = /** @class */ (function () {
         if (this.bot.config.eventDir)
             this.findEvents(this.bot.config.eventDir);
     }
+    /**
+     * Private function for recursively finding events in dir
+     * @param dir Full path to events folder
+     */
     EventManager.prototype.findEvents = function (dir) {
         var _this = this;
         fs_1.readdirSync(dir, { withFileTypes: true }).forEach(function (file) {
@@ -22,9 +26,15 @@ var EventManager = /** @class */ (function () {
             }
         });
     };
+    /**
+     * Adding an event to the bot
+     */
     EventManager.prototype.addEvent = function (event) {
         this.bot.client.on(event.name, event.execute);
     };
+    /**
+     * Adding multiple events to the bot
+     */
     EventManager.prototype.addEvents = function () {
         var _this = this;
         var events = [];
@@ -37,6 +47,10 @@ var EventManager = /** @class */ (function () {
 }());
 exports.EventManager = EventManager;
 var Event = /** @class */ (function () {
+    /**
+     * @param name The name of the event.
+     * @param execute A callback function for the event.
+     */
     function Event(name, execute) {
         this.name = name;
         this.execute = execute;

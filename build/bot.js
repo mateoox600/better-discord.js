@@ -12,9 +12,16 @@ var Bot = /** @class */ (function () {
         this.eventManager = new event_1.EventManager(this);
     }
     /* Discord bot functions */
+    /**
+     * Connect the bot to discord
+     * @param token Discord bot token
+     */
     Bot.prototype.login = function (token) {
         this.client.login(token);
     };
+    /**
+     * Disconnect the bot
+     */
     Bot.prototype.disconnect = function () {
         this.client.destroy();
     };
