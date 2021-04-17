@@ -14,11 +14,13 @@ export interface BotOptions {
 export class Bot {
 
     public client: Client;
-    public commands: Map<string, Command> = new Map<string, Command>();
-    public executableCommands: Map<string, Command> = new Map<string, Command>();
+    public commands: Map<string, Command>;
+    public executableCommands: Map<string, Command>;
 
     constructor(public config: BotOptions) {
         this.client = new Client(this.config.clientConfig);
+        this.commands = new Map<string, Command>();
+        this.executableCommands = new Map<string, Command>();
         if(config.commandDir) this.findCommands(config.commandDir);
         if(config.eventDir) this.findCommands(config.eventDir);
 

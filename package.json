@@ -10,7 +10,8 @@
   "author": "Mateoox600",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.5.3"
+    "discord.js": "^12.5.3",
+    "typedoc": "^0.20.35"
   },
   "devDependencies": {
     "@types/node": "^14.14.41",
