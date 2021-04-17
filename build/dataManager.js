@@ -23,7 +23,6 @@ var DataManager = /** @class */ (function () {
     DataManager.prototype.save = function () {
         var data = require('./data/' + this.name + '.json');
         data.data = Array.from(this.data.values());
-        console.log(data);
         fs_1.writeFileSync(__dirname + '/data/' + this.name + '.json', JSON.stringify(data));
     };
     DataManager.prototype.get = function (id) {

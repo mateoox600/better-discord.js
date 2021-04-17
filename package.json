@@ -5,7 +5,7 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "test": "ts-node test/index.ts"
+    "build": "tsc && typedoc"
   },
   "author": "Mateoox600",
   "license": "ISC",

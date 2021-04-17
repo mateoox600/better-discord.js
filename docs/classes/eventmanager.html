@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Bot | better-discord.js-mateoox</title>
+	<title>EventManager | better-discord.js-mateoox</title>
 	<meta name="description" content="Documentation for better-discord.js-mateoox">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">better-discord.js-mateoox</a>
 				</li>
 				<li>
-					<a href="bot.html">Bot</a>
+					<a href="eventmanager.html">EventManager</a>
 				</li>
 			</ul>
-			<h1>Class Bot</h1>
+			<h1>Class EventManager</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Bot</span>
+						<span class="target">EventManager</span>
 					</li>
 				</ul>
 			</section>
@@ -80,23 +80,21 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="bot.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="eventmanager.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="bot.html#client" class="tsd-kind-icon">client</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="bot.html#commandmanager" class="tsd-kind-icon">command<wbr>Manager</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="bot.html#config" class="tsd-kind-icon">config</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="bot.html#eventmanager" class="tsd-kind-icon">event<wbr>Manager</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="eventmanager.html#bot" class="tsd-kind-icon">bot</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bot.html#disconnect" class="tsd-kind-icon">disconnect</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bot.html#login" class="tsd-kind-icon">login</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventmanager.html#addevent" class="tsd-kind-icon">add<wbr>Event</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventmanager.html#addevents" class="tsd-kind-icon">add<wbr>Events</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="eventmanager.html#findevents" class="tsd-kind-icon">find<wbr>Events</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,22 +106,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Bot<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../interfaces/botoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">BotOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="bot.html" class="tsd-signature-type" data-tsd-kind="Class">Bot</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Event<wbr>Manager<span class="tsd-signature-symbol">(</span>bot<span class="tsd-signature-symbol">: </span><a href="bot.html" class="tsd-signature-type" data-tsd-kind="Class">Bot</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="eventmanager.html" class="tsd-signature-type" data-tsd-kind="Class">EventManager</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mateoox600/better-discord.js/blob/4ca5761/src/bot.ts#L23">bot.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/mateoox600/better-discord.js/blob/4ca5761/src/event.ts#L5">event.ts:5</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>config: <a href="../interfaces/botoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">BotOptions</a></h5>
+									<h5>bot: <a href="bot.html" class="tsd-signature-type" data-tsd-kind="Class">Bot</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="bot.html" class="tsd-signature-type" data-tsd-kind="Class">Bot</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="eventmanager.html" class="tsd-signature-type" data-tsd-kind="Class">EventManager</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -131,84 +129,78 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="client" class="tsd-anchor"></a>
-					<h3>client</h3>
-					<div class="tsd-signature tsd-kind-icon">client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Client</span></div>
+					<a name="bot" class="tsd-anchor"></a>
+					<h3>bot</h3>
+					<div class="tsd-signature tsd-kind-icon">bot<span class="tsd-signature-symbol">:</span> <a href="bot.html" class="tsd-signature-type" data-tsd-kind="Class">Bot</a></div>
 					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/mateoox600/better-discord.js/blob/4ca5761/src/bot.ts#L21">bot.ts:21</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Client from discord.js</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="commandmanager" class="tsd-anchor"></a>
-					<h3>command<wbr>Manager</h3>
-					<div class="tsd-signature tsd-kind-icon">command<wbr>Manager<span class="tsd-signature-symbol">:</span> <a href="commandmanager.html" class="tsd-signature-type" data-tsd-kind="Class">CommandManager</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/mateoox600/better-discord.js/blob/4ca5761/src/bot.ts#L22">bot.ts:22</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="config" class="tsd-anchor"></a>
-					<h3>config</h3>
-					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="../interfaces/botoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">BotOptions</a></div>
-					<aside class="tsd-sources">
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="eventmanager" class="tsd-anchor"></a>
-					<h3>event<wbr>Manager</h3>
-					<div class="tsd-signature tsd-kind-icon">event<wbr>Manager<span class="tsd-signature-symbol">:</span> <a href="eventmanager.html" class="tsd-signature-type" data-tsd-kind="Class">EventManager</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/mateoox600/better-discord.js/blob/4ca5761/src/bot.ts#L23">bot.ts:23</a></li>
-						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="disconnect" class="tsd-anchor"></a>
-					<h3>disconnect</h3>
+					<a name="addevent" class="tsd-anchor"></a>
+					<h3>add<wbr>Event</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">disconnect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Event<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type" data-tsd-kind="Class">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mateoox600/better-discord.js/blob/4ca5761/src/bot.ts#L37">bot.ts:37</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="login" class="tsd-anchor"></a>
-					<h3>login</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">login<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/mateoox600/better-discord.js/blob/4ca5761/src/bot.ts#L33">bot.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/mateoox600/better-discord.js/blob/4ca5761/src/event.ts#L22">event.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>token: <span class="tsd-signature-type">string</span></h5>
+									<h5>event: <a href="event.html" class="tsd-signature-type" data-tsd-kind="Class">Event</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addevents" class="tsd-anchor"></a>
+					<h3>add<wbr>Events</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Events<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>events<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type" data-tsd-kind="Class">Event</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mateoox600/better-discord.js/blob/4ca5761/src/event.ts#L26">event.ts:26</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>events: <a href="event.html" class="tsd-signature-type" data-tsd-kind="Class">Event</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="findevents" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> find<wbr>Events</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Events<span class="tsd-signature-symbol">(</span>dir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mateoox600/better-discord.js/blob/4ca5761/src/event.ts#L11">event.ts:11</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dir: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -227,36 +219,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="bot.html" class="tsd-kind-icon">Bot</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="bot.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="bot.html#client" class="tsd-kind-icon">client</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="bot.html#commandmanager" class="tsd-kind-icon">command<wbr>Manager</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="bot.html#config" class="tsd-kind-icon">config</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="bot.html#eventmanager" class="tsd-kind-icon">event<wbr>Manager</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="bot.html#disconnect" class="tsd-kind-icon">disconnect</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="bot.html#login" class="tsd-kind-icon">login</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="command.html" class="tsd-kind-icon">Command</a>
 					</li>
@@ -269,9 +234,30 @@
 					<li class=" tsd-kind-class">
 						<a href="event.html" class="tsd-kind-icon">Event</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="eventmanager.html" class="tsd-kind-icon">Event<wbr>Manager</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="eventmanager.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="eventmanager.html#bot" class="tsd-kind-icon">bot</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="eventmanager.html#addevent" class="tsd-kind-icon">add<wbr>Event</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="eventmanager.html#addevents" class="tsd-kind-icon">add<wbr>Events</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="eventmanager.html#findevents" class="tsd-kind-icon">find<wbr>Events</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/botoptions.html" class="tsd-kind-icon">Bot<wbr>Options</a>
 					</li>

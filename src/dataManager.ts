@@ -25,8 +25,6 @@ export class DataManager<Key, Value extends DataStruct<any>> {
     public save() {
         const data: {data: Value[]} = require('./data/' + this.name + '.json');
         data.data = Array.from(this.data.values())
-        console.log(data);
-        
         writeFileSync(__dirname + '/data/' + this.name + '.json', JSON.stringify(data));
     }
 
