@@ -11,25 +11,26 @@ var CommandManager = /** @class */ (function () {
         if (bot.config.commandDir)
             this.findCommands(bot.config.commandDir);
         this.bot.client.on('message', function (msg) {
-            // 1. Check the message: if it dosn't start by the prefix or if the user is a bot
+            // 1. Check the message: if it dosn't start by the prefix or if the user is a bot.
             if (!msg.content.startsWith(_this.bot.config.prefix) || msg.author.bot)
                 return;
-            // 2. Getting the command name and the command
+            // 2. Getting the command name and the command.
             var commandName = msg.content.split(/ +/)[0].substring(_this.bot.config.prefix.length);
             var command = _this.executableCommands.get(commandName);
             if (!command)
                 return;
-            // 3. If the command is owner only checking if the user is the owner
+            // 3. If the command is owner only checking if the user is the owner.
             if (command.ownerOnly && !(msg.author.id in _this.bot.config.ownersId)) {
                 msg.reply("\"" + commandName + "\" is a bot owner command");
                 return;
             }
+            var eventData = _this.createEventData(msg, _this.bot);
             // 4. executing the command
-            _this.executeCommand(command, msg);
+            _this.executeCommand(command, eventData);
         });
     }
     /**
-     * Logger for a command execution (might be moved in a logger class in the futur)
+     * Logger for a command execution (might be moved in a logger class in the futur).
      * @param command The command.
      * @param msg The message that triggered the command.
      */
@@ -40,16 +41,37 @@ var CommandManager = /** @class */ (function () {
         else
             console.log(msg.author.tag + ": " + msg.content);
     };
+    CommandManager.prototype.createEventData = function (message, bot) {
+        var e = message;
+        e.awaitResponse = function (msg) {
+            message.channel.send(msg);
+            return new Promise(function (resolve, reject) {
+                var start = Date.now();
+                function process(msg) {
+                    if (Date.now() - start > 2 * 60 * 1000) {
+                        delEvent();
+                        return;
+                    }
+                    if (msg.author.id === message.author.id && msg.channel.id === message.channel.id) {
+                        resolve(msg);
+                    }
+                }
+                var e = bot.client.on('message', process);
+                function delEvent() { e.removeListener('message', process); }
+            });
+        };
+        return e;
+    };
     /**
      * Execute the command
      * @param command The command.
      * @param msg The message that triggered the command.
      */
-    CommandManager.prototype.executeCommand = function (command, msg) {
-        this.logCommandExecution(command, msg);
-        var args = msg.content.split(/ +/);
+    CommandManager.prototype.executeCommand = function (command, eventData) {
+        this.logCommandExecution(command, eventData);
+        var args = eventData.content.split(/ +/);
         args.shift();
-        command.execute(msg, args);
+        command.execute(eventData, args);
     };
     /**
      * Private function for recursively finding commands in dir

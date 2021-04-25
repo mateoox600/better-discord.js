@@ -1,13 +1,17 @@
 import { writeFileSync, existsSync } from 'fs';
 
-// The default structure for data.
+/**
+ * The default structure for data.
+ */
 export interface DataStruct<Key> {
     id: Key
 }
 
 export class DataManager<Key, Value extends DataStruct<Key>> {
 
-    // The map that stores all the data.
+    /**
+     * The map that stores all the data.
+     */
     private data: Map<Key, Value> = new Map<Key, Value>();
 
     /**

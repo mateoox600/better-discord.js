@@ -9,7 +9,9 @@ var DataManager = /** @class */ (function () {
     function DataManager(name) {
         var _this = this;
         this.name = name;
-        // The map that stores all the data.
+        /**
+         * The map that stores all the data.
+         */
         this.data = new Map();
         if (!fs_1.existsSync(__dirname + '/data/' + this.name + '.json'))
             fs_1.writeFileSync(__dirname + '/data/' + this.name + '.json', '{"data":[]}');

@@ -1,8 +1,14 @@
+/**
+ * The default structure for data.
+ */
 export interface DataStruct<Key> {
     id: Key;
 }
 export declare class DataManager<Key, Value extends DataStruct<Key>> {
     name: string;
+    /**
+     * The map that stores all the data.
+     */
     private data;
     /**
      * @param name The name of the data file.
