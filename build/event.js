@@ -6,7 +6,7 @@ var EventManager = /** @class */ (function () {
     function EventManager(bot) {
         this.bot = bot;
         if (this.bot.config.eventDir)
-            this.findEvents(this.bot.config.eventDir);
+            this.bot.config.eventDir.forEach(this.findEvents);
     }
     /**
      * Private function for recursively finding events in dir

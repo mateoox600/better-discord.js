@@ -1,10 +1,7 @@
-import { Message, MessageEmbed } from "discord.js";
+import { Message } from "discord.js";
 import { readdirSync } from "fs";
-import { Bot } from './bot';
-
-export interface CommandEvent extends Message {
-    awaitResponse: (msg: string | MessageEmbed) => Promise<Message>
-}
+import { Bot } from '../bot';
+import { CommandEvent, createEventData } from './commandEvent';
 
 export class CommandManager {
     
@@ -21,7 +18,7 @@ export class CommandManager {
         this.commands = new Map<string, Command>();
         this.executableCommands = new Map<string, Command>();
 
-        if(bot.config.commandDir) this.findCommands(bot.config.commandDir);
+        if(bot.config.commandDir) bot.config.commandDir.forEach(this.findCommands);
 
         this.bot.client.on('message', (msg) => {
             // 1. Check the message: if it dosn't start by the prefix or if the user is a bot.
@@ -35,10 +32,8 @@ export class CommandManager {
             // 3. If the command is owner only checking if the user is the owner.
             if(command.ownerOnly && !(msg.author.id in this.bot.config.ownersId)) { msg.reply(`"${commandName}" is a bot owner command`); return; }
 
-            const eventData: CommandEvent = this.createEventData(msg, this.bot);
-
             // 4. executing the command
-            this.executeCommand(command, eventData);
+            this.executeCommand(command, msg);
         })
     }
 
@@ -52,35 +47,15 @@ export class CommandManager {
         else console.log(`${msg.author.tag}: ${msg.content}`);
     }
 
-    private createEventData(message: Message, bot: Bot): CommandEvent {
-        var e  = message as CommandEvent;
-        e.awaitResponse = (msg) => {
-            message.channel.send(msg);
-            return new Promise<Message>((resolve, reject) => {
-                var start = Date.now();
-                function process(msg: Message) {
-                    if(Date.now() - start > 2*60*1000) { delEvent(); return; }
-                    if(msg.author.id === message.author.id && msg.channel.id === message.channel.id) {
-                        resolve(msg);
-                    }
-                }
-                var e = bot.client.on('message', process);
-                function delEvent() { e.removeListener('message', process) }
-            });
-        }
-        return e;
-    }
-
     /**
      * Execute the command
      * @param command The command.
      * @param msg The message that triggered the command.
      */
-    private executeCommand(command: Command, eventData: CommandEvent) {
+    private executeCommand(command: Command, msg: Message) {
+        const eventData: CommandEvent = createEventData(msg, this.bot);
         this.logCommandExecution(command, eventData);
-        const args = eventData.content.split(/ +/);
-        args.shift();
-        command.execute(eventData, args);
+        command.execute(eventData);
     }
 
     /**
@@ -124,5 +99,5 @@ export class Command {
      * @param ownerOnly True means that only the owner can do the command.
      * @param dm If true the command can be done in dm and in normal text channel.
      */
-    constructor(public name: string, public aliases: string[], public execute: (e: CommandEvent, args: string[]) => void, public ownerOnly: boolean = false, public dm: boolean = false) { }
+    constructor(public name: string, public aliases: string[], public execute: (e: CommandEvent) => void, public ownerOnly: boolean = false, public dm: boolean = false) { }
 }

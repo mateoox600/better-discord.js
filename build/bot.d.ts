@@ -1,5 +1,5 @@
 import { Client, ClientOptions } from 'discord.js';
-import { CommandManager } from './command';
+import { CommandManager } from './commands/commandManager';
 import { EventManager } from './event';
 /**
  * Structure of the bot options
@@ -16,11 +16,11 @@ export interface BotOptions {
     /**
      *The full path to the command folder
      */
-    commandDir?: string;
+    commandDir?: string[];
     /**
      * The full path to the event folder
      */
-    eventDir?: string;
+    eventDir?: string[];
     /**
      * ClientOptions from discord.js
      */

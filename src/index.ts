@@ -1,4 +1,5 @@
 export * from './bot';
-export * from './command';
+export * from './commands/commandManager';
+export * from './commands/commandEvent';
 export * from './event';
 export * from './dataManager';

@@ -5,7 +5,7 @@ import { Bot } from "./bot";
 export class EventManager {
 
     constructor(public bot: Bot) {
-        if(this.bot.config.eventDir) this.findEvents(this.bot.config.eventDir);
+        if(this.bot.config.eventDir) this.bot.config.eventDir.forEach(this.findEvents);
     }
 
     /**

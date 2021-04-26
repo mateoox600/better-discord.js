@@ -2,13 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Bot = void 0;
 var discord_js_1 = require("discord.js");
-var command_1 = require("./command");
+var commandManager_1 = require("./commands/commandManager");
 var event_1 = require("./event");
 var Bot = /** @class */ (function () {
     function Bot(config) {
         this.config = config;
         this.client = new discord_js_1.Client(this.config.clientConfig);
-        this.commandManager = new command_1.CommandManager(this);
+        this.commandManager = new commandManager_1.CommandManager(this);
         this.eventManager = new event_1.EventManager(this);
     }
     /* Discord bot functions */

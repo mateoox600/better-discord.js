@@ -11,6 +11,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./bot"), exports);
-__exportStar(require("./command"), exports);
+__exportStar(require("./commands/commandManager"), exports);
+__exportStar(require("./commands/commandEvent"), exports);
 __exportStar(require("./event"), exports);
 __exportStar(require("./dataManager"), exports);
