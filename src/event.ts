@@ -15,7 +15,7 @@ export class EventManager {
     private findEvents(dir: string) {
         readdirSync(dir, { withFileTypes: true }).forEach((file) => {
             if(file.isDirectory()) this.findEvents(`${dir}/${file.name}`);
-            else if(file.name.split('.')[file.name.split('.').length-1]) {
+            else if(file.name.split('.')[file.name.split('.').length-1] in ['js', 'ts']) {
                 const event: Event | Event[] = require(`${dir}/${file.name}`);
                 if(Array.isArray(event)) event.forEach((e) => this.addEvent(e));
                 else this.addEvent(event);

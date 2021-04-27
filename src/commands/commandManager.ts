@@ -65,7 +65,7 @@ export class CommandManager {
     private findCommands(dir: string) {
         readdirSync(dir, { withFileTypes: true }).forEach((file) => {
             if(file.isDirectory()) this.findCommands(`${dir}/${file.name}`);
-            else if(file.name.split('.')[file.name.split('.').length-1]) {
+            else if(file.name.split('.')[file.name.split('.').length-1] in ['js', 'ts']) {
                 const command: Command | Command[] = require(`${dir}/${file.name}`);
                 if(Array.isArray(command)) command.forEach((cmd) => this.addCommand(cmd));
                 else this.addCommand(command);

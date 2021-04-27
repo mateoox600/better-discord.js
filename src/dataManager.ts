@@ -53,13 +53,22 @@ export class DataManager<Key, Value extends DataStruct<Key>> {
     }
 
     /**
-     * Set the value to the id. (fail if the id and the id in the value are not the same)
+     * Set the value to the id. (fail if the id and the id in the value are not the same).
      * @param id The id of the value.
      * @param value The value.
      */
     public set(id: Key, value: Value) {
         if(id !== value.id) return;
         this.data.set(id, value);
+    }
+
+    /**
+     * Check if the id exist.
+     * @param id The id of a value.
+     * @returns If the value exist.
+     */
+    public has(id: Key) {
+        return this.data.has(id);
     }
 
 }
