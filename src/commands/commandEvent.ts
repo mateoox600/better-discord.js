@@ -10,7 +10,7 @@ export interface CommandEvent extends Message {
      * @param msg The message to send to wait the response
      * @param filter A filter for messages
      */
-    awaitResponse(msg: string | MessageEmbed, time: number, filter: (msg: Message) => boolean): Promise<Message>,
+    awaitResponse(msg: string | MessageEmbed, time: number, filter?: (msg: Message) => boolean): Promise<Message>,
     /**
      * Commands args
      */

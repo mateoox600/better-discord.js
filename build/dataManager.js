@@ -6,8 +6,9 @@ var DataManager = /** @class */ (function () {
     /**
      * @param name The name of the data file.
      */
-    function DataManager(name) {
+    function DataManager(name, autoSaveTime) {
         var _this = this;
+        if (autoSaveTime === void 0) { autoSaveTime = 5 * 60 * 1000; }
         this.name = name;
         /**
          * The map that stores all the data.
@@ -19,7 +20,7 @@ var DataManager = /** @class */ (function () {
         setInterval(function () {
             console.log('Auto Save Data: ', _this.name);
             _this.save();
-        }, 5 * 60 * 1000);
+        }, autoSaveTime);
     }
     /**
      * Load the data from the file.

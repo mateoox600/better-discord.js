@@ -13,7 +13,7 @@ export declare class DataManager<Key, Value extends DataStruct<Key>> {
     /**
      * @param name The name of the data file.
      */
-    constructor(name: string);
+    constructor(name: string, autoSaveTime?: number);
     /**
      * Load the data from the file.
      */

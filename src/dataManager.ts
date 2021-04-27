@@ -17,13 +17,13 @@ export class DataManager<Key, Value extends DataStruct<Key>> {
     /**
      * @param name The name of the data file.
      */
-    constructor(public name: string) {
+    constructor(public name: string, autoSaveTime: number = 5*60*1000) {
         if(!existsSync(__dirname + '/data/' + this.name + '.json')) writeFileSync(__dirname + '/data/' + this.name + '.json', '{"data":[]}');
         this.load();
         setInterval(() => {
             console.log('Auto Save Data: ', this.name);
             this.save();
-        }, 5*60*1000);
+        }, autoSaveTime);
     }
 
     /**
