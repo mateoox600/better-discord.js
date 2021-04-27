@@ -1,6 +1,6 @@
 {
   "name": "discord.js-better",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A upgrade of the discord.js package",
   "main": "build/index.js",
   "types": "build/index.d.ts",

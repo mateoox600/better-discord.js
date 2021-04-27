@@ -3,16 +3,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createEventData = void 0;
 function createEventData(message, bot) {
     var e = message;
-    e.awaitResponse = function (msg) {
+    e.awaitResponse = function (msg, time, filter) {
+        if (time === void 0) { time = 2 * 60 * 1000; }
+        if (filter === void 0) { filter = function () { return true; }; }
         message.channel.send(msg);
         return new Promise(function (resolve, reject) {
             var start = Date.now();
             function process(msg) {
-                if (Date.now() - start > 2 * 60 * 1000) {
+                if (Date.now() - start > time) {
                     delEvent();
-                    return;
+                    reject('no response');
                 }
-                if (msg.author.id === message.author.id && msg.channel.id === message.channel.id) {
+                if (msg.author.id === message.author.id && msg.channel.id === message.channel.id && filter(msg)) {
                     resolve(msg);
                 }
             }

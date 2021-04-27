@@ -46,7 +46,7 @@ var DataManager = /** @class */ (function () {
         return this.data.get(id);
     };
     /**
-     * Set the value to the id. (fail if the id and the id in the value are not the same)
+     * Set the value to the id. (fail if the id and the id in the value are not the same).
      * @param id The id of the value.
      * @param value The value.
      */
@@ -54,6 +54,14 @@ var DataManager = /** @class */ (function () {
         if (id !== value.id)
             return;
         this.data.set(id, value);
+    };
+    /**
+     * Check if the id exist.
+     * @param id The id of a value.
+     * @returns If the value exist.
+     */
+    DataManager.prototype.has = function (id) {
+        return this.data.has(id);
     };
     return DataManager;
 }());

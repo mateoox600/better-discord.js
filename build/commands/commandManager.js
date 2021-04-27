@@ -60,7 +60,7 @@ var CommandManager = /** @class */ (function () {
         fs_1.readdirSync(dir, { withFileTypes: true }).forEach(function (file) {
             if (file.isDirectory())
                 _this.findCommands(dir + "/" + file.name);
-            else if (file.name.split('.')[file.name.split('.').length - 1]) {
+            else if (file.name.split('.')[file.name.split('.').length - 1] in ['js', 'ts']) {
                 var command = require(dir + "/" + file.name);
                 if (Array.isArray(command))
                     command.forEach(function (cmd) { return _this.addCommand(cmd); });

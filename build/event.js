@@ -17,7 +17,7 @@ var EventManager = /** @class */ (function () {
         fs_1.readdirSync(dir, { withFileTypes: true }).forEach(function (file) {
             if (file.isDirectory())
                 _this.findEvents(dir + "/" + file.name);
-            else if (file.name.split('.')[file.name.split('.').length - 1]) {
+            else if (file.name.split('.')[file.name.split('.').length - 1] in ['js', 'ts']) {
                 var event_1 = require(dir + "/" + file.name);
                 if (Array.isArray(event_1))
                     event_1.forEach(function (e) { return _this.addEvent(e); });

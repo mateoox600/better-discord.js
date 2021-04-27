@@ -29,9 +29,15 @@ export declare class DataManager<Key, Value extends DataStruct<Key>> {
      */
     get(id: Key): Value | undefined;
     /**
-     * Set the value to the id. (fail if the id and the id in the value are not the same)
+     * Set the value to the id. (fail if the id and the id in the value are not the same).
      * @param id The id of the value.
      * @param value The value.
      */
     set(id: Key, value: Value): void;
+    /**
+     * Check if the id exist.
+     * @param id The id of a value.
+     * @returns If the value exist.
+     */
+    has(id: Key): boolean;
 }
