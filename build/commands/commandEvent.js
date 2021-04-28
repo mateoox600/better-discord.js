@@ -14,15 +14,14 @@ function createEventData(message, bot) {
                     delEvent();
                     reject('no response');
                 }
-                if (msg.author.id === message.author.id && msg.channel.id === message.channel.id && filter(msg)) {
+                if (msg.author.id === message.author.id && msg.channel.id === message.channel.id && filter(msg))
                     resolve(msg);
-                }
             }
             var e = bot.client.on('message', process);
             function delEvent() { e.removeListener('message', process); }
         });
     };
-    e.args = message.content.split(/ +/);
+    e.args = message.content.split(/ +/).slice(1);
     return e;
 }
 exports.createEventData = createEventData;

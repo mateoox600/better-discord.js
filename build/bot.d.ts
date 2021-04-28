@@ -1,4 +1,4 @@
-import { Client, ClientOptions } from 'discord.js';
+import { Client, ClientOptions, Guild, Message, Snowflake } from 'discord.js';
 import { CommandManager } from './commands/commandManager';
 import { EventManager } from './event';
 /**
@@ -35,6 +35,7 @@ export declare class Bot {
     commandManager: CommandManager;
     eventManager: EventManager;
     constructor(config: BotOptions);
+    fetchMessage(id: Snowflake, guild: Guild): Promise<Message | undefined>;
     /**
      * Connect the bot to discord
      * @param token Discord bot token

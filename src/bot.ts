@@ -1,4 +1,4 @@
-import { Client, ClientOptions } from 'discord.js';
+import { Client, ClientOptions, Guild, Message, Snowflake, TextChannel } from 'discord.js';
 import { CommandManager } from './commands/commandManager';
 import { EventManager } from './event';
 
@@ -44,6 +44,18 @@ export class Bot {
     }
 
     /* Discord bot functions */
+
+    public async fetchMessage(id: Snowflake, guild: Guild) {
+        try {
+            var lastGiveaway = await guild?.channels.cache.array().filter((c) => c.type === 'text').map((c) => c as TextChannel).filter(async (c) => {
+                try { return (await c.messages.fetch(id)) != null
+                } catch (error) { return false; }
+            })[0].messages.fetch(id) as Message;
+            return lastGiveaway;
+        } catch (error) {
+            return undefined;
+        }
+    }
 
     /**
      * Connect the bot to discord

@@ -18,7 +18,7 @@ export interface CommandEvent extends Message {
 }
 
 export function createEventData(message: Message, bot: Bot): CommandEvent {
-    var e  = message as CommandEvent;
+    var e = message as CommandEvent;
 
     e.awaitResponse = (msg, time = 2*60*1000, filter = () => { return true; }) => {
         message.channel.send(msg);
@@ -26,15 +26,13 @@ export function createEventData(message: Message, bot: Bot): CommandEvent {
             var start = Date.now();
             function process(msg: Message) {
                 if(Date.now() - start > time) { delEvent(); reject('no response'); }
-                if(msg.author.id === message.author.id && msg.channel.id === message.channel.id && filter(msg)) {
-                    resolve(msg);
-                }
+                if(msg.author.id === message.author.id && msg.channel.id === message.channel.id && filter(msg)) resolve(msg);
             }
             var e = bot.client.on('message', process);
             function delEvent() { e.removeListener('message', process) }
         });
     };
-    e.args = message.content.split(/ +/);
+    e.args = message.content.split(/ +/).slice(1);
 
     return e;
 }
