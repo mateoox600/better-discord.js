@@ -4,9 +4,10 @@ exports.Event = exports.EventManager = void 0;
 var fs_1 = require("fs");
 var EventManager = /** @class */ (function () {
     function EventManager(bot) {
+        var _this = this;
         this.bot = bot;
         if (this.bot.config.eventDir)
-            this.bot.config.eventDir.forEach(this.findEvents);
+            this.bot.config.eventDir.forEach(function (dir) { return _this.findEvents(dir); });
     }
     /**
      * Private function for recursively finding events in dir
@@ -30,7 +31,14 @@ var EventManager = /** @class */ (function () {
      * Adding an event to the bot
      */
     EventManager.prototype.addEvent = function (event) {
-        this.bot.client.on(event.name, event.execute);
+        var _this = this;
+        this.bot.client.on(event.name, function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return event.execute(_this.bot, args);
+        });
     };
     /**
      * Adding multiple events to the bot

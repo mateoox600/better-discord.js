@@ -10,7 +10,7 @@ var CommandManager = /** @class */ (function () {
         this.commands = new Map();
         this.executableCommands = new Map();
         if (bot.config.commandDir)
-            bot.config.commandDir.forEach(this.findCommands);
+            bot.config.commandDir.forEach(function (dir) { return _this.findCommands(dir); });
         this.bot.client.on('message', function (msg) {
             // 1. Check the message: if it dosn't start by the prefix or if the user is a bot.
             if (!msg.content.startsWith(_this.bot.config.prefix) || msg.author.bot)
@@ -60,7 +60,7 @@ var CommandManager = /** @class */ (function () {
         fs_1.readdirSync(dir, { withFileTypes: true }).forEach(function (file) {
             if (file.isDirectory())
                 _this.findCommands(dir + "/" + file.name);
-            else if (file.name.split('.')[file.name.split('.').length - 1] in ['js', 'ts']) {
+            else if (['js', 'ts'].includes(file.name.split('.')[file.name.split('.').length - 1])) {
                 var command = require(dir + "/" + file.name);
                 if (Array.isArray(command))
                     command.forEach(function (cmd) { return _this.addCommand(cmd); });

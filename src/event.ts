@@ -1,3 +1,4 @@
+import { ClientEvents } from "discord.js";
 import { readdirSync } from "fs";
 import { Bot } from "./bot";
 
@@ -5,7 +6,7 @@ import { Bot } from "./bot";
 export class EventManager {
 
     constructor(public bot: Bot) {
-        if(this.bot.config.eventDir) this.bot.config.eventDir.forEach(this.findEvents);
+        if(this.bot.config.eventDir) this.bot.config.eventDir.forEach((dir) => this.findEvents(dir));
     }
 
     /**
@@ -27,7 +28,7 @@ export class EventManager {
      * Adding an event to the bot
      */
     public addEvent(event: Event) {
-        this.bot.client.on(event.name, event.execute);
+        this.bot.client.on(event.name, (...args) => event.execute(this.bot, args));
     }
 
     /**
@@ -44,5 +45,5 @@ export class Event {
      * @param name The name of the event.
      * @param execute A callback function for the event.
      */
-    constructor(public name: string, public execute: (...args: any[]) => void) { }
+    constructor(public name: keyof ClientEvents, public execute: (client: Bot, ...args: any[]) => void) { }
 }

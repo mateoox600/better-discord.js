@@ -18,7 +18,7 @@ export class CommandManager {
         this.commands = new Map<string, Command>();
         this.executableCommands = new Map<string, Command>();
 
-        if(bot.config.commandDir) bot.config.commandDir.forEach(this.findCommands);
+        if(bot.config.commandDir) bot.config.commandDir.forEach((dir) => this.findCommands(dir));
 
         this.bot.client.on('message', (msg) => {
             // 1. Check the message: if it dosn't start by the prefix or if the user is a bot.
@@ -65,7 +65,7 @@ export class CommandManager {
     private findCommands(dir: string) {
         readdirSync(dir, { withFileTypes: true }).forEach((file) => {
             if(file.isDirectory()) this.findCommands(`${dir}/${file.name}`);
-            else if(file.name.split('.')[file.name.split('.').length-1] in ['js', 'ts']) {
+            else if(['js', 'ts'].includes(file.name.split('.')[file.name.split('.').length-1])) {
                 const command: Command | Command[] = require(`${dir}/${file.name}`);
                 if(Array.isArray(command)) command.forEach((cmd) => this.addCommand(cmd));
                 else this.addCommand(command);
