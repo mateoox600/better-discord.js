@@ -1,11 +1,12 @@
 {
   "name": "discord.js-better",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A upgrade of the discord.js package",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "build": "tsc && typedoc"
+    "build": "tsc && typedoc",
+    "test": ""
   },
   "author": "Mateoox600",
   "license": "ISC",

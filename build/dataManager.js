@@ -28,7 +28,7 @@ var DataManager = /** @class */ (function () {
     DataManager.prototype.load = function () {
         var _this = this;
         var data = require('./data/' + this.name + '.json').data;
-        data.forEach(function (d) { return _this.data.set(d.id, d); });
+        data.forEach(function (d) { return _this.data.set(d.key, d); });
     };
     /**
      * Save the data to the file.
@@ -40,29 +40,29 @@ var DataManager = /** @class */ (function () {
     };
     /**
      * Set a data from the map.
-     * @param id The id of the value.
+     * @param key The key of the value.
      * @returns Returns the value or undefined if the value is not found.
      */
-    DataManager.prototype.get = function (id) {
-        return this.data.get(id);
+    DataManager.prototype.get = function (key) {
+        return this.data.get(key);
     };
     /**
-     * Set the value to the id. (fail if the id and the id in the value are not the same).
-     * @param id The id of the value.
+     * Set the value to the key. (fail if the key and the key in the value are not the same).
+     * @param key The key of the value.
      * @param value The value.
      */
-    DataManager.prototype.set = function (id, value) {
-        if (id !== value.id)
+    DataManager.prototype.set = function (key, value) {
+        if (key !== value.key)
             return;
-        this.data.set(id, value);
+        this.data.set(key, value);
     };
     /**
-     * Check if the id exist.
-     * @param id The id of a value.
+     * Check if the key exist.
+     * @param key The key of a value.
      * @returns If the value exist.
      */
-    DataManager.prototype.has = function (id) {
-        return this.data.has(id);
+    DataManager.prototype.has = function (key) {
+        return this.data.has(key);
     };
     return DataManager;
 }());

@@ -2,7 +2,7 @@
  * The default structure for data.
  */
 export interface DataStruct<Key> {
-    id: Key;
+    key: Key;
 }
 export declare class DataManager<Key, Value extends DataStruct<Key>> {
     name: string;
@@ -24,20 +24,20 @@ export declare class DataManager<Key, Value extends DataStruct<Key>> {
     save(): void;
     /**
      * Set a data from the map.
-     * @param id The id of the value.
+     * @param key The key of the value.
      * @returns Returns the value or undefined if the value is not found.
      */
-    get(id: Key): Value | undefined;
+    get(key: Key): Value | undefined;
     /**
-     * Set the value to the id. (fail if the id and the id in the value are not the same).
-     * @param id The id of the value.
+     * Set the value to the key. (fail if the key and the key in the value are not the same).
+     * @param key The key of the value.
      * @param value The value.
      */
-    set(id: Key, value: Value): void;
+    set(key: Key, value: Value): void;
     /**
-     * Check if the id exist.
-     * @param id The id of a value.
+     * Check if the key exist.
+     * @param key The key of a value.
      * @returns If the value exist.
      */
-    has(id: Key): boolean;
+    has(key: Key): boolean;
 }
