@@ -4,7 +4,7 @@ import { writeFileSync, existsSync } from 'fs';
  * The default structure for data.
  */
 export interface DataStruct<Key> {
-    id: Key
+    key: Key
 }
 
 export class DataManager<Key, Value extends DataStruct<Key>> {
@@ -31,7 +31,7 @@ export class DataManager<Key, Value extends DataStruct<Key>> {
      */
     private load() {
         const data: Value[] = require('./data/' + this.name + '.json').data;
-        data.forEach((d) => this.data.set(d.id, d));
+        data.forEach((d) => this.data.set(d.key, d));
     }
 
     /**
@@ -45,30 +45,30 @@ export class DataManager<Key, Value extends DataStruct<Key>> {
 
     /**
      * Set a data from the map.
-     * @param id The id of the value.
+     * @param key The key of the value.
      * @returns Returns the value or undefined if the value is not found.
      */
-    public get(id: Key) {
-        return this.data.get(id);
+    public get(key: Key) {
+        return this.data.get(key);
     }
 
     /**
-     * Set the value to the id. (fail if the id and the id in the value are not the same).
-     * @param id The id of the value.
+     * Set the value to the key. (fail if the key and the key in the value are not the same).
+     * @param key The key of the value.
      * @param value The value.
      */
-    public set(id: Key, value: Value) {
-        if(id !== value.id) return;
-        this.data.set(id, value);
+    public set(key: Key, value: Value) {
+        if(key !== value.key) return;
+        this.data.set(key, value);
     }
 
     /**
-     * Check if the id exist.
-     * @param id The id of a value.
+     * Check if the key exist.
+     * @param key The key of a value.
      * @returns If the value exist.
      */
-    public has(id: Key) {
-        return this.data.has(id);
+    public has(key: Key) {
+        return this.data.has(key);
     }
 
 }
