@@ -22,13 +22,13 @@ export function createEventData(message: Message, bot: Bot): CommandEvent {
 
     e.awaitResponse = (msg, time = 2*60*1000, filter = () => { return true; }) => {
         message.channel.send(msg);
-        return new Promise<Message>((resolve, reject) => {
+        return new Promise<CommandEvent>((resolve, reject) => {
             var start = Date.now();
             function process(msg: Message) {
                 if(Date.now() - start > time) { delEvent(); reject('no response'); }
-                if(msg.author.id === message.author.id && msg.channel.id === message.channel.id && filter(msg)) resolve(msg);
+                if(msg.author.id === message.author.id && msg.channel.id === message.channel.id && filter(msg)) resolve(createEventData(msg, bot));
             }
-            var e = bot.client.on('message', process);
+            var e = bot.on('message', process);
             function delEvent() { e.removeListener('message', process) }
         });
     };

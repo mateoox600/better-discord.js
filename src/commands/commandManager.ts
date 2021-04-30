@@ -20,7 +20,7 @@ export class CommandManager {
 
         if(bot.config.commandDir) bot.config.commandDir.forEach((dir) => this.findCommands(dir));
 
-        this.bot.client.on('message', (msg) => {
+        this.bot.on('message', (msg) => {
             // 1. Check the message: if it dosn't start by the prefix or if the user is a bot.
             if(!msg.content.startsWith(this.bot.config.prefix) || msg.author.bot) return;
 
@@ -34,7 +34,7 @@ export class CommandManager {
 
             // 4. executing the command
             this.executeCommand(command, msg);
-        })
+        });
     }
 
     /**

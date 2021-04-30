@@ -28,17 +28,13 @@ export interface BotOptions {
     clientConfig?: ClientOptions
 }
 
-export class Bot {
+export class Bot extends Client {
 
-    /**
-     * Client from discord.js
-     */
-    public client: Client;
     public commandManager: CommandManager;
     public eventManager: EventManager;
 
     constructor(public config: BotOptions) {
-        this.client = new Client(this.config.clientConfig);
+        super(config.clientConfig);
         this.commandManager = new CommandManager(this);
         this.eventManager = new EventManager(this);
     }
@@ -55,21 +51,6 @@ export class Bot {
         } catch (error) {
             return undefined;
         }
-    }
-
-    /**
-     * Connect the bot to discord
-     * @param token Discord bot token
-     */
-    public login(token: string) {
-        this.client.login(token);
-    }
-
-    /**
-     * Disconnect the bot
-     */
-    public disconnect() {
-        this.client.destroy();
     }
 
 }

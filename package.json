@@ -6,7 +6,7 @@
   "types": "build/index.d.ts",
   "scripts": {
     "build": "tsc && typedoc",
-    "test": ""
+    "test": "node build/test.js"
   },
   "author": "Mateoox600",
   "license": "ISC",
