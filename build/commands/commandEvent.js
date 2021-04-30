@@ -15,9 +15,9 @@ function createEventData(message, bot) {
                     reject('no response');
                 }
                 if (msg.author.id === message.author.id && msg.channel.id === message.channel.id && filter(msg))
-                    resolve(msg);
+                    resolve(createEventData(msg, bot));
             }
-            var e = bot.client.on('message', process);
+            var e = bot.on('message', process);
             function delEvent() { e.removeListener('message', process); }
         });
     };

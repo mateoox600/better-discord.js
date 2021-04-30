@@ -26,23 +26,10 @@ export interface BotOptions {
      */
     clientConfig?: ClientOptions;
 }
-export declare class Bot {
+export declare class Bot extends Client {
     config: BotOptions;
-    /**
-     * Client from discord.js
-     */
-    client: Client;
     commandManager: CommandManager;
     eventManager: EventManager;
     constructor(config: BotOptions);
     fetchMessage(id: Snowflake, guild: Guild): Promise<Message | undefined>;
-    /**
-     * Connect the bot to discord
-     * @param token Discord bot token
-     */
-    login(token: string): void;
-    /**
-     * Disconnect the bot
-     */
-    disconnect(): void;
 }

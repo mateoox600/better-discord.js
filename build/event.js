@@ -18,7 +18,7 @@ var EventManager = /** @class */ (function () {
         fs_1.readdirSync(dir, { withFileTypes: true }).forEach(function (file) {
             if (file.isDirectory())
                 _this.findEvents(dir + "/" + file.name);
-            else if (file.name.split('.')[file.name.split('.').length - 1] in ['js', 'ts']) {
+            else if (['js', 'ts'].includes(file.name.split('.')[file.name.split('.').length - 1])) {
                 var event_1 = require(dir + "/" + file.name);
                 if (Array.isArray(event_1))
                     event_1.forEach(function (e) { return _this.addEvent(e); });
@@ -32,7 +32,7 @@ var EventManager = /** @class */ (function () {
      */
     EventManager.prototype.addEvent = function (event) {
         var _this = this;
-        this.bot.client.on(event.name, function () {
+        this.bot.on(event.name, function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];

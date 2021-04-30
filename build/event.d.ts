@@ -1,3 +1,4 @@
+import { ClientEvents } from "discord.js";
 import { Bot } from "./bot";
 export declare class EventManager {
     bot: Bot;
@@ -17,11 +18,11 @@ export declare class EventManager {
     addEvents(...events: Event[]): void;
 }
 export declare class Event {
-    name: string;
+    name: keyof ClientEvents;
     execute: (client: Bot, ...args: any[]) => void;
     /**
      * @param name The name of the event.
      * @param execute A callback function for the event.
      */
-    constructor(name: string, execute: (client: Bot, ...args: any[]) => void);
+    constructor(name: keyof ClientEvents, execute: (client: Bot, ...args: any[]) => void);
 }

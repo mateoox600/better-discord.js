@@ -11,7 +11,7 @@ var CommandManager = /** @class */ (function () {
         this.executableCommands = new Map();
         if (bot.config.commandDir)
             bot.config.commandDir.forEach(function (dir) { return _this.findCommands(dir); });
-        this.bot.client.on('message', function (msg) {
+        this.bot.on('message', function (msg) {
             // 1. Check the message: if it dosn't start by the prefix or if the user is a bot.
             if (!msg.content.startsWith(_this.bot.config.prefix) || msg.author.bot)
                 return;
