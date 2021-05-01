@@ -1,5 +1,6 @@
 import { Client, ClientOptions, Guild, Message, Snowflake } from 'discord.js';
 import { CommandManager } from './commands/commandManager';
+import { DataManager } from './dataManager';
 import { EventManager } from './event';
 /**
  * Structure of the bot options
@@ -28,9 +29,18 @@ export interface BotOptions {
 }
 export declare class Bot extends Client {
     config: BotOptions;
+    static instance: Bot;
     commandManager: CommandManager;
     eventManager: EventManager;
+    dataManagers: Map<string, DataManager<any, any>>;
     constructor(config: BotOptions);
     fetchMessage(id: Snowflake, guild: Guild): Promise<Message | undefined>;
+    /**
+     * Convert a time string ('1h25s', '6th') in millis
+     * @param arg time in string ('1h25s', '6th')
+     * @returns time in millis to arg
+     */
     parseTime(arg: string): number;
+    humanizeDate(date: Date): string;
+    humanizeMillisTime(millis: number): string;
 }
