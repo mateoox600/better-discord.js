@@ -45,5 +45,5 @@ export class Event {
      * @param name The name of the event.
      * @param execute A callback function for the event.
      */
-    constructor(public name: keyof ClientEvents, public execute: (client: Bot, ...args: any[]) => void) { }
+    constructor(public name: keyof ClientEvents, public execute: (client: Bot, ...args: any) => void) { }
 }

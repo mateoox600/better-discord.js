@@ -12,17 +12,17 @@ export declare class CommandManager {
     executableCommands: Map<string, Command>;
     constructor(bot: Bot);
     /**
-     * Logger for a command execution (might be moved in a logger class in the futur).
-     * @param command The command.
-     * @param msg The message that triggered the command.
-     */
-    private logCommandExecution;
-    /**
      * Execute the command
      * @param command The command.
      * @param msg The message that triggered the command.
      */
     private executeCommand;
+    /**
+     * Logger for a command execution (might be moved in a logger class in the futur).
+     * @param command The command.
+     * @param msg The message that triggered the command.
+     */
+    private logCommandExecution;
     /**
      * Private function for recursively finding commands in dir
      * @param dir Full path to commands folder
@@ -40,9 +40,12 @@ export declare class CommandManager {
 export declare class Command {
     name: string;
     aliases: string[];
-    execute: (e: CommandEvent) => void;
+    execute: (client: Bot, e: CommandEvent) => void;
     ownerOnly: boolean;
     dm: boolean;
+    customProperties?: {
+        [key: string]: any;
+    } | undefined;
     /**
      * @param name The name of the command.
      * @param aliases Aliases of the command name.
@@ -50,5 +53,7 @@ export declare class Command {
      * @param ownerOnly True means that only the owner can do the command.
      * @param dm If true the command can be done in dm and in normal text channel.
      */
-    constructor(name: string, aliases: string[], execute: (e: CommandEvent) => void, ownerOnly?: boolean, dm?: boolean);
+    constructor(name: string, aliases: string[], execute: (client: Bot, e: CommandEvent) => void, ownerOnly?: boolean, dm?: boolean, customProperties?: {
+        [key: string]: any;
+    } | undefined);
 }

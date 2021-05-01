@@ -38,16 +38,6 @@ export class CommandManager {
     }
 
     /**
-     * Logger for a command execution (might be moved in a logger class in the futur).
-     * @param command The command.
-     * @param msg The message that triggered the command.
-     */
-    private logCommandExecution(command: Command, msg: Message) {
-        if(!command.dm) console.log(`Server: ${msg.guild?.name} - ${msg.author.tag}: ${msg.content}`);
-        else console.log(`${msg.author.tag}: ${msg.content}`);
-    }
-
-    /**
      * Execute the command
      * @param command The command.
      * @param msg The message that triggered the command.
@@ -55,7 +45,17 @@ export class CommandManager {
     private executeCommand(command: Command, msg: Message) {
         const eventData: CommandEvent = createEventData(msg, this.bot);
         this.logCommandExecution(command, eventData);
-        command.execute(eventData);
+        command.execute(this.bot, eventData);
+    }
+
+    /**
+     * Logger for a command execution (might be moved in a logger class in the futur).
+     * @param command The command.
+     * @param msg The message that triggered the command.
+     */
+    private logCommandExecution(command: Command, msg: Message) {
+        if(!(msg.channel.type === 'dm')) console.log(`Server: ${msg.guild?.name} - ${msg.author.tag}: ${msg.content}`);
+        else console.log(`${msg.author.tag}: ${msg.content}`);
     }
 
     /**
@@ -99,5 +99,5 @@ export class Command {
      * @param ownerOnly True means that only the owner can do the command.
      * @param dm If true the command can be done in dm and in normal text channel.
      */
-    constructor(public name: string, public aliases: string[], public execute: (e: CommandEvent) => void, public ownerOnly: boolean = false, public dm: boolean = false) { }
+    constructor(public name: string, public aliases: string[], public execute: (client: Bot, e: CommandEvent) => void, public ownerOnly: boolean = false, public dm: boolean = false, public customProperties?: {[key: string]: any}) { }
 }

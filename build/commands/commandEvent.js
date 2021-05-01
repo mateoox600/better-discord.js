@@ -3,11 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createEventData = void 0;
 function createEventData(message, bot) {
     var e = message;
-    e.awaitResponse = function (msg, time, filter) {
-        if (time === void 0) { time = 2 * 60 * 1000; }
-        if (filter === void 0) { filter = function () { return true; }; }
+    e.args = message.content.split(/ +/).slice(1);
+    e.awaitResponse = (msg, time = 2 * 60 * 1000, filter = () => { return true; }) => {
         message.channel.send(msg);
-        return new Promise(function (resolve, reject) {
+        return new Promise((resolve, reject) => {
             var start = Date.now();
             function process(msg) {
                 if (Date.now() - start > time) {
@@ -21,7 +20,6 @@ function createEventData(message, bot) {
             function delEvent() { e.removeListener('message', process); }
         });
     };
-    e.args = message.content.split(/ +/).slice(1);
     return e;
 }
 exports.createEventData = createEventData;

@@ -19,10 +19,10 @@ export declare class EventManager {
 }
 export declare class Event {
     name: keyof ClientEvents;
-    execute: (client: Bot, ...args: any[]) => void;
+    execute: (client: Bot, ...args: any) => void;
     /**
      * @param name The name of the event.
      * @param execute A callback function for the event.
      */
-    constructor(name: keyof ClientEvents, execute: (client: Bot, ...args: any[]) => void);
+    constructor(name: keyof ClientEvents, execute: (client: Bot, ...args: any) => void);
 }

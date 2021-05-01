@@ -32,4 +32,5 @@ export declare class Bot extends Client {
     eventManager: EventManager;
     constructor(config: BotOptions);
     fetchMessage(id: Snowflake, guild: Guild): Promise<Message | undefined>;
+    parseTime(arg: string): number;
 }
