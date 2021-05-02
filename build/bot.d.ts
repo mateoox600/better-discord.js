@@ -35,12 +35,4 @@ export declare class Bot extends Client {
     dataManagers: Map<string, DataManager<any, any>>;
     constructor(config: BotOptions);
     fetchMessage(id: Snowflake, guild: Guild): Promise<Message | undefined>;
-    /**
-     * Convert a time string ('1h25s', '6th') in millis
-     * @param arg time in string ('1h25s', '6th')
-     * @returns time in millis to arg
-     */
-    parseTime(arg: string): number;
-    humanizeDate(date: Date): string;
-    humanizeMillisTime(millis: number): string;
 }
